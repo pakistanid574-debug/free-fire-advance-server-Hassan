@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Search Console Verification -->
 <meta name="google-site-verification" content="mqs9JNllYYrmpEj7YBh1NQzu8LO6x6gPJGXv8rbt-EQ" />
 
 <title>FF Links</title>
@@ -16,10 +15,13 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 }
 
+/* BODY HIDDEN UNTIL COUNTRY CHECK */
+
 body{
+display:none;
 background:url("https://dl.dir.freefiremobile.com/common/OB53/CSH/ADV/bg_main.jpg");
 background-size:cover;
 background-position:center;
@@ -43,8 +45,6 @@ font-weight:bold;
 cursor:pointer;
 }
 
-/* MENU */
-
 nav a{
 color:white;
 text-decoration:none;
@@ -66,7 +66,7 @@ display:block;
 /* CARD */
 
 .card{
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.65);
 padding:20px;
 border-radius:10px;
 margin-top:20px;
@@ -83,9 +83,14 @@ color:white;
 border-radius:6px;
 cursor:pointer;
 margin-top:10px;
+font-weight:bold;
 }
 
-/* LINK BOX */
+button:hover{
+background:#e68900;
+}
+
+/* LINK */
 
 .link{
 background:#111;
@@ -95,12 +100,25 @@ margin-top:10px;
 word-break:break-all;
 }
 
-/* COMING SOON */
+/* COMING */
 
 .coming{
 text-align:center;
 font-size:40px;
 margin-top:120px;
+}
+
+/* BLOCK */
+
+.block{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:black;
+color:white;
+font-size:32px;
+text-align:center;
 }
 
 </style>
@@ -121,7 +139,7 @@ margin-top:120px;
 
 </nav>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 
 <div id="home" class="page active">
 
@@ -153,7 +171,7 @@ Copy Link
 
 </div>
 
-<!-- CONTACT PAGE -->
+<!-- CONTACT -->
 
 <div id="contact" class="page">
 
@@ -165,7 +183,7 @@ Email: <b>ghostgi362@gmail.com</b>
 
 </div>
 
-<!-- COMING SOON PAGE -->
+<!-- COMING -->
 
 <div id="coming" class="page">
 
@@ -177,11 +195,39 @@ Email: <b>ghostgi362@gmail.com</b>
 
 <script>
 
+/* COUNTRY CHECK BEFORE SHOWING SITE */
+
+fetch("https://ipapi.co/json/")
+.then(res => res.json())
+.then(data => {
+
+let country=data.country_code
+
+if(country==="US" || country==="IL"){
+
+document.body.style.display="block"
+document.body.innerHTML=`<div class="block">🚫 This website is not available in your country</div>`
+
+}else{
+
+document.body.style.display="block"
+
+}
+
+})
+
+.catch(()=>{
+
+document.body.style.display="block"
+
+})
+
+
+/* PAGE SWITCH */
+
 function showPage(page){
 
-let pages=document.querySelectorAll(".page")
-
-pages.forEach(function(p){
+document.querySelectorAll(".page").forEach(p=>{
 p.classList.remove("active")
 })
 
@@ -189,13 +235,13 @@ document.getElementById(page).classList.add("active")
 
 }
 
+/* COPY */
+
 function copyLink(id){
 
 let text=document.getElementById(id).innerText
-
 navigator.clipboard.writeText(text)
-
-alert("Link Copied")
+alert("Link copied!")
 
 }
 
