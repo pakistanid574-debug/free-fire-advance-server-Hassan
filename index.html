@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FF Links</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:url("https://dl.dir.freefiremobile.com/common/OB53/CSH/ADV/bg_main.jpg");
+background-size:cover;
+background-position:center;
+color:white;
+min-height:100vh;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:rgba(0,0,0,0.6);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* MENU */
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+/* PAGES */
+
+.page{
+display:none;
+padding:40px;
+}
+
+.active{
+display:block;
+}
+
+/* CARD */
+
+.card{
+background:rgba(0,0,0,0.6);
+padding:20px;
+border-radius:10px;
+margin-top:20px;
+max-width:600px;
+}
+
+/* BUTTON */
+
+button{
+background:#ff9800;
+border:none;
+padding:10px 20px;
+color:white;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* LINK BOX */
+
+.link{
+background:#111;
+padding:10px;
+border-radius:6px;
+margin-top:10px;
+word-break:break-all;
+}
+
+/* COMING SOON */
+
+.coming{
+text-align:center;
+font-size:40px;
+margin-top:120px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo" onclick="showPage('coming')">
+🔥 FF SITE
+</div>
+
+<div>
+<a href="#" onclick="showPage('home')">Home</a>
+<a href="#" onclick="showPage('contact')">Contact</a>
+</div>
+
+</nav>
+
+
+<!-- HOME PAGE -->
+
+<div id="home" class="page active">
+
+<h1>Free Fire Image Links</h1>
+
+<div class="card">
+
+<div class="link" id="link1">
+https://dl.dir.freefiremobile.com/common/OB53/CSH/ADV/bg_main.jpg
+</div>
+
+<button onclick="copyLink('link1')">
+Copy Link
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="link" id="link2">
+https://dl.dir.freefiremobile.com/common/OB52/ID/asdmk1nfbasc/splash_daftar.jpg
+</div>
+
+<button onclick="copyLink('link2')">
+Copy Link
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CONTACT PAGE -->
+
+<div id="contact" class="page">
+
+<h1>Contact</h1>
+
+<div class="card">
+Email: <b>ghostgi362@gmail.com</b>
+</div>
+
+</div>
+
+
+<!-- COMING SOON PAGE -->
+
+<div id="coming" class="page">
+
+<div class="coming">
+🚀 Coming Soon
+</div>
+
+</div>
+
+
+<script>
+
+function showPage(page){
+
+let pages=document.querySelectorAll(".page")
+
+pages.forEach(function(p){
+p.classList.remove("active")
+})
+
+document.getElementById(page).classList.add("active")
+
+}
+
+function copyLink(id){
+
+let text=document.getElementById(id).innerText
+
+navigator.clipboard.writeText(text)
+
+alert("Link Copied")
+
+}
+
+</script>
+
+</body>
+  </html>
