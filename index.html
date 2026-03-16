@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="google-site-verification" content="mqs9JNllYYrmpEj7YBh1NQzu8LO6x6gPJGXv8rbt-EQ" />
+<meta name="google-site-verification" content="mqs9JNllYYrmpEj7YBh1NQzu8LO6x6gPJGXv8rbt-EQ"/>
 
 <title>FF Links</title>
 
@@ -15,18 +15,14 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Segoe UI,Arial,sans-serif;
 }
-
-/* BODY HIDDEN UNTIL COUNTRY CHECK */
 
 body{
 display:none;
-background:url("https://dl.dir.freefiremobile.com/common/OB53/CSH/ADV/bg_main.jpg");
-background-size:cover;
-background-position:center;
-color:white;
 min-height:100vh;
+background:linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+color:white;
 }
 
 /* NAVBAR */
@@ -35,13 +31,16 @@ nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 30px;
-background:rgba(0,0,0,0.6);
+padding:18px 30px;
+background:rgba(0,0,0,0.35);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .logo{
 font-size:22px;
-font-weight:bold;
+font-weight:700;
+color:#4da3ff;
 cursor:pointer;
 }
 
@@ -49,62 +48,88 @@ nav a{
 color:white;
 text-decoration:none;
 margin-left:20px;
-font-weight:bold;
+font-weight:600;
+transition:0.3s;
 }
 
-/* PAGES */
+nav a:hover{
+color:#4da3ff;
+}
+
+/* PAGE */
 
 .page{
 display:none;
 padding:40px;
+max-width:750px;
+margin:auto;
 }
 
 .active{
 display:block;
 }
 
+/* TITLE */
+
+h1{
+margin-bottom:20px;
+}
+
 /* CARD */
 
 .card{
-background:rgba(0,0,0,0.65);
-padding:20px;
-border-radius:10px;
+background:rgba(255,255,255,0.08);
+border-radius:16px;
+padding:22px;
 margin-top:20px;
-max-width:600px;
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* LINK BOX */
+
+.link{
+background:rgba(0,0,0,0.4);
+padding:12px;
+border-radius:10px;
+margin-top:10px;
+word-break:break-all;
+font-size:14px;
 }
 
 /* BUTTON */
 
 button{
-background:#ff9800;
+margin-top:12px;
+padding:11px 20px;
 border:none;
-padding:10px 20px;
-color:white;
-border-radius:6px;
+border-radius:10px;
+font-weight:600;
 cursor:pointer;
-margin-top:10px;
-font-weight:bold;
+background:linear-gradient(135deg,#0a84ff,#0066ff);
+color:white;
+transition:0.3s;
 }
 
 button:hover{
-background:#e68900;
+transform:scale(1.05);
 }
 
-/* LINK */
-
-.link{
-background:#111;
-padding:10px;
-border-radius:6px;
-margin-top:10px;
-word-break:break-all;
+.copied{
+background:linear-gradient(135deg,#00c853,#009624)!important;
 }
 
 /* COMING */
 
 .coming{
 text-align:center;
-font-size:40px;
+font-size:42px;
 margin-top:120px;
 }
 
@@ -116,9 +141,38 @@ justify-content:center;
 align-items:center;
 height:100vh;
 background:black;
-color:white;
-font-size:32px;
+font-size:28px;
 text-align:center;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+background:#0a84ff;
+padding:12px 20px;
+border-radius:10px;
+font-weight:bold;
+opacity:0;
+transition:0.4s;
+}
+
+.toast.show{
+opacity:1;
+bottom:50px;
+}
+
+/* FOOTER */
+
+.footer{
+position:fixed;
+bottom:10px;
+right:15px;
+font-size:13px;
+opacity:0.7;
 }
 
 </style>
@@ -128,7 +182,7 @@ text-align:center;
 
 <nav>
 
-<div class="logo" onclick="showPage('coming')">
+<div class="logo" onclick="showPage('home')">
 🔥 FF SITE
 </div>
 
@@ -151,7 +205,7 @@ text-align:center;
 https://dl.dir.freefiremobile.com/common/OB53/CSH/ADV/bg_main.jpg
 </div>
 
-<button onclick="copyLink('link1')">
+<button onclick="copyLink(event,'link1')">
 Copy Link
 </button>
 
@@ -163,7 +217,7 @@ Copy Link
 https://dl.dir.freefiremobile.com/common/OB52/ID/asdmk1nfbasc/splash_daftar.jpg
 </div>
 
-<button onclick="copyLink('link2')">
+<button onclick="copyLink(event,'link2')">
 Copy Link
 </button>
 
@@ -178,7 +232,11 @@ Copy Link
 <h1>Contact</h1>
 
 <div class="card">
-Email: <b>ghostgi362@gmail.com</b>
+Email: <b id="email">ghostgi362@gmail.com</b>
+<br>
+<button onclick="copyEmail(event)">
+Copy Email
+</button>
 </div>
 
 </div>
@@ -186,42 +244,37 @@ Email: <b>ghostgi362@gmail.com</b>
 <!-- COMING -->
 
 <div id="coming" class="page">
-
-<div class="coming">
-🚀 Coming Soon
+<div class="coming">🚀 Coming Soon</div>
 </div>
 
-</div>
+<div id="toast" class="toast">Copied ✔</div>
+
+<footer class="footer">
+Version 1.2.39
+</footer>
 
 <script>
 
-/* COUNTRY CHECK BEFORE SHOWING SITE */
+/* COUNTRY CHECK */
 
 fetch("https://ipapi.co/json/")
-.then(res => res.json())
-.then(data => {
+.then(res=>res.json())
+.then(data=>{
 
-let country=data.country_code
+let c=data.country_code
 
-if(country==="US" || country==="IL"){
-
+if(c==="US"||c==="IL"){
 document.body.style.display="block"
-document.body.innerHTML=`<div class="block">🚫 This website is not available in your country</div>`
-
-}else{
-
+document.body.innerHTML=`<div class="block">🚫 Website not available in your country</div>`
+}
+else{
 document.body.style.display="block"
-
 }
 
 })
-
 .catch(()=>{
-
 document.body.style.display="block"
-
 })
-
 
 /* PAGE SWITCH */
 
@@ -235,13 +288,52 @@ document.getElementById(page).classList.add("active")
 
 }
 
-/* COPY */
+/* COPY LINK */
 
-function copyLink(id){
+function copyLink(e,id){
 
 let text=document.getElementById(id).innerText
 navigator.clipboard.writeText(text)
-alert("Link copied!")
+
+let btn=e.target
+btn.classList.add("copied")
+
+showToast()
+
+setTimeout(()=>{
+btn.classList.remove("copied")
+},1500)
+
+}
+
+/* COPY EMAIL */
+
+function copyEmail(e){
+
+let text=document.getElementById("email").innerText
+navigator.clipboard.writeText(text)
+
+let btn=e.target
+btn.classList.add("copied")
+
+showToast()
+
+setTimeout(()=>{
+btn.classList.remove("copied")
+},1500)
+
+}
+
+/* TOAST */
+
+function showToast(){
+
+let t=document.getElementById("toast")
+t.classList.add("show")
+
+setTimeout(()=>{
+t.classList.remove("show")
+},1500)
 
 }
 
