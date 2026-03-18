@@ -73,6 +73,7 @@ display:block;
 
 h1{
 margin-bottom:20px;
+text-align:center;
 }
 
 /* CARD */
@@ -85,6 +86,7 @@ margin-top:20px;
 backdrop-filter:blur(15px);
 border:1px solid rgba(255,255,255,0.1);
 transition:0.3s;
+text-align:center;
 }
 
 .card:hover{
@@ -92,37 +94,30 @@ transform:translateY(-5px);
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* LINK BOX */
-
-.link{
-background:rgba(0,0,0,0.4);
-padding:12px;
-border-radius:10px;
-margin-top:10px;
-word-break:break-all;
-font-size:14px;
-}
-
 /* BUTTON */
 
 button{
 margin-top:12px;
-padding:11px 20px;
+padding:14px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 font-weight:600;
 cursor:pointer;
 background:linear-gradient(135deg,#0a84ff,#0066ff);
 color:white;
 transition:0.3s;
+width:100%;
+font-size:16px;
 }
 
 button:hover{
 transform:scale(1.05);
 }
 
-.copied{
-background:linear-gradient(135deg,#00c853,#009624)!important;
+button:disabled{
+background:grey;
+cursor:not-allowed;
+opacity:0.6;
 }
 
 /* COMING */
@@ -143,26 +138,6 @@ height:100vh;
 background:black;
 font-size:28px;
 text-align:center;
-}
-
-/* TOAST */
-
-.toast{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%);
-background:#0a84ff;
-padding:12px 20px;
-border-radius:10px;
-font-weight:bold;
-opacity:0;
-transition:0.4s;
-}
-
-.toast.show{
-opacity:1;
-bottom:50px;
 }
 
 /* FOOTER */
@@ -197,28 +172,12 @@ opacity:0.7;
 
 <div id="home" class="page active">
 
-<h1>Free Fire Image Links</h1>
+<h1>Free Fire</h1>
 
 <div class="card">
 
-<div class="link" id="link1">
-https://dl.dir.freefiremobile.com/common/OB53/CSH/ADV/bg_main.jpg
-</div>
-
-<button onclick="copyLink(event,'link1')">
-Copy Link
-</button>
-
-</div>
-
-<div class="card">
-
-<div class="link" id="link2">
-https://dl.dir.freefiremobile.com/common/OB52/ID/asdmk1nfbasc/splash_daftar.jpg
-</div>
-
-<button onclick="copyLink(event,'link2')">
-Copy Link
+<button disabled>
+🚀 Advance Server APK (Coming Soon)
 </button>
 
 </div>
@@ -233,24 +192,12 @@ Copy Link
 
 <div class="card">
 Email: <b id="email">ghostgi362@gmail.com</b>
-<br>
-<button onclick="copyEmail(event)">
-Copy Email
-</button>
 </div>
 
 </div>
-
-<!-- COMING -->
-
-<div id="coming" class="page">
-<div class="coming">🚀 Coming Soon</div>
-</div>
-
-<div id="toast" class="toast">Copied ✔</div>
 
 <footer class="footer">
-Version 1.2.39
+Version 1.2.40
 </footer>
 
 <script>
@@ -285,55 +232,6 @@ p.classList.remove("active")
 })
 
 document.getElementById(page).classList.add("active")
-
-}
-
-/* COPY LINK */
-
-function copyLink(e,id){
-
-let text=document.getElementById(id).innerText
-navigator.clipboard.writeText(text)
-
-let btn=e.target
-btn.classList.add("copied")
-
-showToast()
-
-setTimeout(()=>{
-btn.classList.remove("copied")
-},1500)
-
-}
-
-/* COPY EMAIL */
-
-function copyEmail(e){
-
-let text=document.getElementById("email").innerText
-navigator.clipboard.writeText(text)
-
-let btn=e.target
-btn.classList.add("copied")
-
-showToast()
-
-setTimeout(()=>{
-btn.classList.remove("copied")
-},1500)
-
-}
-
-/* TOAST */
-
-function showToast(){
-
-let t=document.getElementById("toast")
-t.classList.add("show")
-
-setTimeout(()=>{
-t.classList.remove("show")
-},1500)
 
 }
 
